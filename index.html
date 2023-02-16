@@ -254,9 +254,7 @@
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Wire Diagram</h4>
-                                <p>
-                                    ADD DIAGRAM
-                                </p>
+                                <img src="assets\img\lab3\wiring.png" alt="wiring" />
                             </div>
                         </div>
                     </div>
@@ -265,27 +263,28 @@
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">ToF Sensor connected to QWIIC Breakout Board</h4>
-                                <p>
-                                    ADD IMAGE
-                                </p>
+                                <img src="assets\img\lab3\qwiic.jpg" alt="qwiic" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Artemis scanning for I2C Devices</h4>
                                 <p>
-                                    
+                                    As mentioned in the prelab, the default address of the TOF sensor is 0x52. However, when scanning for I2C devices the address is 
+                                    0x29 which is equal to 0x52 bitshifted to the right. The least significant bit is used to determine if the device is read/written.
                                 </p>
                                 <img src="assets\img\lab3\scanForI2CDeviceTOF.jpg" alt="sensor address" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Sensor data with chosen method</h4>
                                 <p>
+                                    The TOF sensor we are using has two measure modes. 
                                     for this lab chose short by default ; there are only two modes short (1.3m) and long (4m)
                                 </p>
+                                <img src="assets\img\lab3\tape_measure.jpg" alt="tape measure" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">2 ToF Sensors in Parallel </h4>
                                 <p>
-                                    discuss 
+                                    As described in the prelab, I decided to change the address of one of the sensors to 0x54 to use both sensors in parallel. 
                                 </p>
                                 <img src="assets\img\lab3\sensingBothTOF.jpg" alt="2 sensors parallel" />
                             </div>
