@@ -107,7 +107,23 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Prelab</h3>
-                            <p>coming soon</p>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Set Up</h4>
+                                <p>
+                                    In order to set up the computer, we had to install Python 3 and pip if they weren't installed already. I also created and activated
+                                    a new virtual environment called "FastRbots_ble" which will be used for labs in this course. Within this specific virtual environment
+                                    I downloaded the proper packages including 'numpy pyyaml colorama nest_asyncio bleak jupyterlab' so I can run jupyter lab. At this point,
+                                    I also downloaded the codebase into my project directory. In addition, to set up the Artemis Board I downloaded the ArdinoBLE library and 
+                                    ran the sketch ble_ardino.ino to view the MAC address of the artemis board.
+                                </p>
+                                <img src="assets\img\lab2\Lab2PrelabMACAddress.png" alt="mac address" />
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Codebase</h4>
+                                <p>
+                                    understanding of codebase and how bluetooth works with comp and artemis
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -115,36 +131,48 @@
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Configurations</h4>
-                                <p>First I ran the ble_arduino file in arduino to get the mac address of the Artemis board and randomly generated a uuid in jupyter labs.
-                                    Afterwards, I updated these values connections.yaml file.
+                                <p>First I ran the ble_arduino file in arduino to get the mac address of the Artemis board (as done in the prelab) and randomly 
+                                    generated a uuid in jupyter labs. Afterwards, I updated these values connections.yaml file.
                                 </p>
-                                <img src="assets\img\lab2\Lab2PrelabMACAddress.png" alt="mac address" />
                                 <img src="assets\img\lab2\lab2_uuid_generated.jpg" alt="uuid generated" />
                                 <img src="assets\img\lab2\Lab2_ardiuno uuid.jpg" alt="uuid arduino" />
                                 <img src="assets\img\lab2\Lab2_jupyter uuid.jpg" alt="uuid jupyter" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Demo</h4>
-                                <p>I ran into a lot of issues when originally running the demo file. My personal laptop runs Windows 11, which at the time of the lab 
+                                <p>
+                                    I ran into a lot of issues when originally running the demo file. My personal laptop runs Windows 11, which at the time of the lab 
                                     was not able to properly establish a bluetooth connection between the arduino IDE and bluetooth in jupyter lab. I ended up using the 
-                                    lab computers but it was to no avail. 
+                                    lab computers but it was to no avail. During the lab section it seemed other students were connecting to the board by accident while 
+                                    I could not connect to it.
+                                </p>
+                                <p>
+                                    After a week of testing things out, TA Alex posted step by step instructions for how to set up bluetooth communication on Windows 11
+                                    It was very helpful and I was finally able to start making progress on the lab.
+                                </p>
+                                <p>
+                                    This is a video running through the Demo File: INCLUDE VIDEO AHHHHHHHH
                                 </p>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0"> Task 1: ECHO</h4>
                                 <p>echo command</p>
+                                <img src="assets\img\lab2\Task1.jpg" alt="task 1 echo" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 2: GET_TIME_MILLLIS</h4>
                                 <p>time command</p>
+                                <img src="assets\img\lab2\Task2.jpg" alt="task 2 time" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 3: Notification Handler</h4>
                                 <p>handler</p>
+                                <img src="assets\img\lab2\Task3.jpg" alt="task 3 notif" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 4: GET_TEMP_5s</h4>
                                 <p>temp sense</p>
+                                <img src="assets\img\lab2\Task4.jpg" alt="task 4 temp" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 5: GET_TEMP_5s_RAPID</h4>
