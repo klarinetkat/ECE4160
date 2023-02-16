@@ -121,7 +121,7 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Codebase</h4>
                                 <p>
-                                    understanding of codebase and how bluetooth works with comp and artemis
+                                    AHHHHHHHHHHHHHH understanding of codebase and how bluetooth works with comp and artemis
                                 </p>
                             </div>
                         </div>
@@ -156,31 +156,51 @@
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0"> Task 1: ECHO</h4>
-                                <p>echo command</p>
+                                <p>
+                                    The ECHO command sends a specific string to the Artemis board and the Artemis sends back the string to the computer. This is done 
+                                    with interactions between a jupter notebook file and the arduino IDE. In juptyer I called ble.send_command(CMD.COMMAND, "some string") 
+                                    to send the command to Arduino's switch-case statements. I almost forgot to add the command to the CommandTypes enum and the cmd.types.py file.
+                                </p>
                                 <img src="assets\img\lab2\Task1.jpg" alt="task 1 echo" />
                             </div>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 2: GET_TIME_MILLLIS</h4>
-                                <p>time command</p>
+                                <h4 class="mb-0">Task 2: GET_TIME_MILLIS</h4>
+                                <p>
+                                    This task also used the ble.send_command() and ble.receive_string() to send and receive information bewteen the computer and Artemis. 
+                                    I used millis() to get the current time in milliseconds and appended it to the string characteristic.
+                                </p>
                                 <img src="assets\img\lab2\Task2.jpg" alt="task 2 time" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 3: Notification Handler</h4>
-                                <p>handler</p>
+                                <p>
+                                    I set up a notification handler and callback function to extract the time from the string sent from the Artemis command GET_TIME_MILLIS
+                                    to the laptop. In order to extract the string, I had to first process the data. Since I knew the format of the string being received, 
+                                    it was easy to splice the string depending on where there were colons and add all the times to an array of times.
+                                </p>
                                 <img src="assets\img\lab2\Task3.jpg" alt="task 3 notif" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 4: GET_TEMP_5s</h4>
-                                <p>temp sense</p>
+                                <p>
+                                    I added another case statement in the ble_ardino.ino file which sends an array of timestamped temperature readings that were taken
+                                    once per second for five seconds. I followed the example temperature file from Lab 1 as a guide for how to read the temperature in 
+                                    Celsius and used the GET_TIME_MILLIS case as the base code before adding temperature.
+                                </p>
                                 <img src="assets\img\lab2\Task4.jpg" alt="task 4 temp" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 5: GET_TEMP_5s_RAPID</h4>
-                                <p>temp sense</p>
+                                <p>
+                                    The notification handler for GET_TEMP_5s_RAPID remained the same from the previous task. The difference was in how we loop to collect
+                                    a series of data points, for example, checking the time we started taking measurements and subtracting it by the current time to see
+                                    if the different was less than or equal to 5000 milliseconds (5 seconds). There were over 50 reading that were taken.
+                                </p>
+                                <img src="assets\img\lab2\lab2_clipped_rapid.jpg" alt="task 5 rapid" />
                             </div>
                             <div class="flex-grow-1">
                                 <h4 class="mb-0">Task 6: Limitations</h4>
-                                <p>limitations</p>
+                                <p>limitations AHHHHHHHHHHHH</p>
                             </div>
                         </div>   
                     </div>
