@@ -217,17 +217,96 @@
             <!-- Lab 3 -->
             <section class="resume-section" id="lab3">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Lab 3: TOF and IMU </h2>
+                    <h2 class="mb-5">Lab 3: TOF</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Lab 3 content</h3>
-                            <p>coming soon</p>
+                            <h3 class="mb-0">Prelab</h3>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">I2C Sensor Address</h4>
+                                <p>
+                                    The default address of the TOF sensor is 0x52. This informaton can be found on the VL53L0X datasheet.
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Using 2 ToF Sensors</h4>
+                                <p>
+                                    There are two approaches for using two TOF Sensors in parallel because they both have the same address. The first option is to
+                                    turn off one TOF sensor during set-up, changing the address of the other sensor, and then turning the TOF sensor back on. At this 
+                                    point, both TOF sensors would have different addresses and you can read data from both at the same time. The second option is to keep
+                                    both TOF sensors with the same address but alternate between turning on and off one sensor when you want to read data from the other one.
+                                    An issue that may arise later on is the delay when waiting for the sensors to start back up.
+                                </p>
+                                <p>
+                                    I decided to go with the first option because I don't want to deal with delays later on when my robot is navigating and doing stunts. In addition,
+                                    I only have to solder the XSHUT pin on one of the TOF sensors to a GPIO pin (I chose GPIO 8) on the Artemis.
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Placement of Sensors</h4>
+                                <p>
+                                    There are many different options for how to place the sensors on the robot. The first option is having a sensor on the left and right sides of 
+                                    the robot however this means the robot will be unable to detect objects that are in front of it. The second option is having a sensor on the 
+                                    front and another sensor on one side. This allows for the robot to see in front, but it can cause issues of the robot is coming close to an 
+                                    obstacle on the side without the sensor. The third option is to place both sensors at an angle on the front of the robot. This allow for the
+                                    sensors to see both in front and to the sides. One thing to think about is how to process that data to give reliable and useful information
+                                    if the sensors are at an angle.
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Wire Diagram</h4>
+                                <p>
+                                    ADD DIAGRAM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Lab Tasks</h3>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">ToF Sensor connected to QWIIC Breakout Board</h4>
+                                <p>
+                                    ADD IMAGE
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Artemis scanning for I2C Devices</h4>
+                                <p>
+                                    
+                                </p>
+                                <img src="assets\img\lab3\scanForI2CDeviceTOF.jpg" alt="sensor address" />
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Sensor data with chosen method</h4>
+                                <p>
+                                    for this lab chose short by default ; there are only two modes short (1.3m) and long (4m)
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">2 ToF Sensors in Parallel </h4>
+                                <p>
+                                    discuss 
+                                </p>
+                                <img src="assets\img\lab3\sensingBothTOF.jpg" alt="2 sensors parallel" />
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">ToF Sensor Speed</h4>
+                                <p>
+                                    speed??
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Time vs Distance</h4>
+                                <p>
+                                    Graph??
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">More lab content</h3>
-                            <p>coming soon</p>
+                            <h3 class="mb-0">Resources</h3>
+                            <p>Also, </p>
                         </div>
                     </div>
                 </div>
@@ -236,7 +315,7 @@
             <!-- Lab 4 -->
             <section class="resume-section" id="lab4">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Lab 4: Characterize your car </h2>
+                    <h2 class="mb-5">Lab 4: IMU</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Lab 4 content</h3>
