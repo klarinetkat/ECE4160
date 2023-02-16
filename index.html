@@ -104,6 +104,16 @@
             <section class="resume-section" id="lab2">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Lab 2: Bluetooth Communication</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Objective</h3>
+                            <p>
+                                Lab 2's purpose is to establish a bluetooth connection between our computer and the Artemis board.
+                                We will use Jupyter notebook to code in Python and the Arduino IDE for the Artemis. 
+                                In future labs we will use bluetooth to communicate between the Artemis and our laptops.
+                            </p>
+                        </div>
+                    </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Prelab</h3>
@@ -114,14 +124,19 @@
                                     a new virtual environment called "FastRbots_ble" which will be used for labs in this course. Within this specific virtual environment
                                     I downloaded the proper packages including 'numpy pyyaml colorama nest_asyncio bleak jupyterlab' so I can run jupyter lab. At this point,
                                     I also downloaded the codebase into my project directory. In addition, to set up the Artemis Board I downloaded the ArdinoBLE library and 
-                                    ran the sketch ble_ardino.ino to view the MAC address of the artemis board.
+                                    ran the sketch ble_arduino.ino to view the MAC address of the artemis board.
                                 </p>
                                 <img src="assets\img\lab2\Lab2PrelabMACAddress.png" alt="mac address" />
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Codebase</h4>
                                 <p>
-                                    AHHHHHHHHHHHHHH understanding of codebase and how bluetooth works with comp and artemis
+                                    The code base ble_robot-1.1 contains two sub-directories ble_arduino and ble_python. ble_arduino contains the main ble_arduino.ino 
+                                    file that we edit in this lab and class definition files. ble_python contains all the files that run in jupyter labs. demo.ipynb is
+                                    the main Jupyter Notebook that we can use to run commands and it relies on information from the other files. 
+                                    When we run ble_arduino we find out the MAC address of the Artemis which can afterwards be put in connections.yaml. Also, in 
+                                    jupyter lab we can randomly generate a uuid which is then copied into connections.yaml and ble_arduino.
+                                    In addition, we add a command case to ble_arduino.ino we have to include it in cmd_types.py. 
                                 </p>
                             </div>
                         </div>
@@ -131,7 +146,8 @@
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Configurations</h4>
-                                <p>First I ran the ble_arduino file in arduino to get the mac address of the Artemis board (as done in the prelab) and randomly 
+                                <p>
+                                    First I ran the ble_arduino file in arduino to get the mac address of the Artemis board (as done in the prelab) and randomly 
                                     generated a uuid in jupyter labs. Afterwards, I updated these values connections.yaml file.
                                 </p>
                                 <img src="assets\img\lab2\lab2_uuid_generated.jpg" alt="uuid generated" />
@@ -162,7 +178,7 @@
                                     with interactions between a jupter notebook file and the arduino IDE. In juptyer I called ble.send_command(CMD.COMMAND, "some string") 
                                     to send the command to Arduino's switch-case statements. I almost forgot to add the command to the CommandTypes enum and the cmd.types.py file.
                                 </p>
-                                <img src="assets\img\lab2\Task1.jpg" alt="task 1 echo" width = 1000/>
+                                <img src="assets\img\lab2\Task1.jpg" alt="task 1 echo" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 2: GET_TIME_MILLIS</h4>
@@ -170,7 +186,7 @@
                                     This task also used the ble.send_command() and ble.receive_string() to send and receive information bewteen the computer and Artemis. 
                                     I used millis() to get the current time in milliseconds and appended it to the string characteristic.
                                 </p>
-                                <img src="assets\img\lab2\Task2.jpg" alt="task 2 time" width = 1000/>
+                                <img src="assets\img\lab2\Task2.jpg" alt="task 2 time" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 3: Notification Handler</h4>
@@ -179,16 +195,16 @@
                                     to the laptop. In order to extract the string, I had to first process the data. Since I knew the format of the string being received, 
                                     it was easy to splice the string depending on where there were colons and add all the times to an array of times.
                                 </p>
-                                <img src="assets\img\lab2\Task3.jpg" alt="task 3 notif" width = 1000/>
+                                <img src="assets\img\lab2\Task3.jpg" alt="task 3 notif" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 4: GET_TEMP_5s</h4>
                                 <p>
-                                    I added another case statement in the ble_ardino.ino file which sends an array of timestamped temperature readings that were taken
+                                    I added another case statement in the ble_arduino.ino file which sends an array of timestamped temperature readings that were taken
                                     once per second for five seconds. I followed the example temperature file from Lab 1 as a guide for how to read the temperature in 
                                     Celsius and used the GET_TIME_MILLIS case as the base code before adding temperature.
                                 </p>
-                                <img src="assets\img\lab2\Task4.jpg" alt="task 4 temp" width = 1000/>
+                                <img src="assets\img\lab2\Task4.jpg" alt="task 4 temp" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 5: GET_TEMP_5s_RAPID</h4>
@@ -219,6 +235,15 @@
             <section class="resume-section" id="lab3">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Lab 3: TOF</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-4">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Objective</h3>
+                            <p>
+                                Lab 3's purpose is to set up communication between the Artemis and time of flight sensors. After learning how to read 
+                                data from the time of flight sensors, we build off of lab 2 to quickly send data to our computers.
+                            </p>
+                        </div>
+                    </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Prelab</h3>
@@ -255,7 +280,7 @@
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Wire Diagram</h4>
-                                <img src="assets\img\lab3\wiring.png" alt="wiring" width = 1000/>
+                                <img src="assets\img\lab3\wiring.png" alt="wiring" width = 800/>
                             </div>
                         </div>
                     </div>
@@ -264,7 +289,7 @@
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">ToF Sensor connected to QWIIC Breakout Board</h4>
-                                <img src="assets\img\lab3\qwiic.jpg" alt="qwiic" width = 1000/>
+                                <img src="assets\img\lab3\qwiic.jpg" alt="qwiic" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Artemis scanning for I2C Devices</h4>
@@ -272,7 +297,7 @@
                                     As mentioned in the prelab, the default address of the TOF sensor is 0x52. However, when scanning for I2C devices the address is 
                                     0x29 which is equal to 0x52 bitshifted to the right. The least significant bit is used to determine if the device is read/written.
                                 </p>
-                                <img src="assets\img\lab3\scanForI2CDeviceTOF.jpg" alt="sensor address" width = 1000/>
+                                <img src="assets\img\lab3\scanForI2CDeviceTOF.jpg" alt="sensor address" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Sensor data with chosen method</h4>
@@ -284,11 +309,11 @@
                                 <p>
                                     Example setup for measuring:
                                 </p>
-                                <img src="assets\img\lab3\tape_measure.jpg" alt="tape measure" width = 1000/>
+                                <img src="assets\img\lab3\tape_measure.jpg" alt="tape measure" width = 800/>
                                 <p>
                                     Graph of different distances (100 measuremeants per distance):
                                 </p>
-                                <img src="assets\img\lab3\graph1.jpg" alt="tape measure" width = 800/>
+                                <img src="assets\img\lab3\graph1.jpg" alt="graph 1" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">2 ToF Sensors in Parallel </h4>
@@ -296,20 +321,29 @@
                                     As described in the prelab, I decided to change the address of one of the sensors to 0x54 to use both sensors in parallel. 
                                     Below is a screenshot of both sensors measuring different distances.
                                 </p>
-                                <img src="assets\img\lab3\sensingBothTOF.jpg" alt="2 sensors parallel" width = 1000/>
+                                <img src="assets\img\lab3\sensingBothTOF.jpg" alt="2 sensors parallel" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">ToF Sensor Speed</h4>
                                 <p>
-                                    speed??
+                                    Timing with Stop Ranging is about 95-99 ms
                                 </p>
+                                <img src="assets\img\lab3\timingWithStopRanging.jpg" alt="with stop ranging" width = 800/>
+                                <p>
+                                    Timing without Stop Ranging is about 95-99 ms
+                                </p>
+                                <img src="assets\img\lab3\timingWithOutStopRanging.jpg" alt="without stop ranging" width = 800/>
+                                <p>
+                                    Timing for just reading is about 2 ms
+                                </p>
+                                <img src="assets\img\lab3\timingJustReading.jpg" alt="just reading" width = 800/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Time vs Distance</h4>
                                 <p>
                                     Graph of Both Sensors measuring at the same time
                                 </p>
-                                <img src="assets\img\lab3\graph2.jpg" alt="tape measure" width = 800/>
+                                <img src="assets\img\lab3\graph2.jpg" alt="graph 2" width = 800/>
                             </div>
                         </div>
                     </div>
