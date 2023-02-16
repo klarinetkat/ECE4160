@@ -317,11 +317,12 @@
                                     the long distance mode for the actual robot since it will be moving at a faster speed and needs enough time to react to obstacles 
                                 </p>
                                 <p>
-                                    Example setup for measuring:
+                                    Example setup for measuring 150 mm:
                                 </p>
                                 <img src="assets\img\lab3\tape_measure.jpg" alt="tape measure" width = 800/>
                                 <p>
-                                    Graph of different distances (100 measuremeants per distance):
+                                    I calculated the mean and standard deviation of 100 measurements for 150 mm, 300 mm, 450 mm, and 600 mm. Below is the plot with
+                                    the actual value on the x-axis and the measured values on the y-axis:
                                 </p>
                                 <img src="assets\img\lab3\graph1.jpg" alt="graph 1" width = 800/>
                             </div>
@@ -351,7 +352,9 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Time vs Distance</h4>
                                 <p>
-                                    Graph of Both Sensors measuring at the same time
+                                    I edited some of the Lab 2 code to record time-stamped ToF data for a set period of time and send it to my computer using Bluetooth.
+                                    By using the callback function from lab 2 I was able to extract the data from the given string and plot it on a graph. The graph 
+                                    shows the distance measurements when both sensors collect data at the same time.
                                 </p>
                                 <img src="assets\img\lab3\graph2.jpg" alt="graph 2" width = 800/>
                             </div>
