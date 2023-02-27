@@ -390,13 +390,12 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Set up the IMU</h4>
                                 <p>
-                                    In order to set up the IMU, we had to install the SParkFun 9DOF IMU Breakout - ICM 20948 - Arduino library. The basics example was 
-                                    run to see if IMU's accelerometer and gyroscope were properly measuring data. Below is a video of the example code running.
+                                    In order to set up the IMU, we had to install the SParkFun 9DOF IMU Breakout - ICM 20948 - Arduino library. 
+                                    AD0_VAL should be 1 ...
+                                    The basics example was run to see if IMU's accelerometer and gyroscope were properly measuring data. Below is a video of the example code running.
                                 </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/N4BcSB49qXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                <p>
-                                    AD0_VAL should be 1 ...
-                                </p>
+                                <p></p>
                                 <p>
                                     In order to know that the board is running the blue LED on the Artemis board toggles on and off three times on start up.
                                     For this lab it helps know if the IMU is ready to collect data and as an indication for if the Artemis reruns the code.
@@ -409,28 +408,55 @@
                                     During lecture we went over the equations for pitch (rotation around the y-axis) and roll (rotation around the x-axis):
                                 </p>
                                 <img src="assets\img\lab4\lab4_acc_equations.jpg" alt="equation for pitch and roll" width = 500/>
+                                <p></p>
                                 <p>
                                     I made a separate ardunio file that initializes the IMU to collect data and print into the serial monitor in a specific format
                                     so I could later on connect a separate Serial Plot to receive the data from the same COM the Artemis was connect to. 
-                                    
+                                </p>
+                                <p>
                                     First, I used my lab box as a guide to make sure I was tilting the IMU by +/- 90 degrees about both the x- and y-axis. The images 
                                     below show the different orienations with the pitch and roll printed in the Serial Monitor and displayed in the Serial Plotter.
-                                    
-                                    Aftwerwards, I plotted the pitch and roll in the Serial Plotter and took a video as I rotated the IMU in different directions.
-                                    Below is a video of:
-
-                                    insert images and video
+                                    For the serial monitor it is printed as pitch,roll and for the Serial Plotter the pitch is in green and the roll is in red.
+                                </p>
+                                <p>
+                                    Pitch and Roll: 0 degrees
+                                </p>
+                                <img src="assets\img\lab4\roll_0_monitor.jpg" alt="pitch and roll 0 degrees - serial monitor" width = 500/>
+                                <img src="assets\img\lab4\roll_0_plotter.jpg" alt="pitch and roll 0 degrees - serial plotter" width = 500/>
+                                <p>
+                                    Roll (red) +90 degrees 
+                                </p>
+                                <img src="assets\img\lab4\roll_p90_monitor.jpg" alt="roll +90 degrees - serial monitor" width = 500/>
+                                <img src="assets\img\lab4\roll_p90_plotter2.jpg" alt="roll +90 degrees - serial plotter" width = 500/>
+                                <p>
+                                    Roll (red) -90 degrees 
+                                </p>
+                                <img src="assets\img\lab4\roll_n90_monitor.jpg" alt="roll -90 degrees - serial monitor" width = 500/>
+                                <img src="assets\img\lab4\roll_n90_plotter2.jpg" alt="roll -90 degrees - serial plotter" width = 500/>
+                                <p>
+                                    Pitch (red) +90 degrees 
+                                </p>
+                                <img src="assets\img\lab4\roll_p90_monitor.jpg" alt="pitch +90 degrees - serial monitor" width = 500/>
+                                <img src="assets\img\lab4\roll_p90_plotter2.jpg" alt="pitch +90 degrees - serial plotter" width = 500/>
+                                <p>
+                                    Pitch (red) -90 degrees 
+                                </p>
+                                <img src="assets\img\lab4\roll_n90_monitor.jpg" alt="pitch -90 degrees - serial monitor" width = 500/>
+                                <img src="assets\img\lab4\roll_n90_plotter2.jpg" alt="pitch -90 degrees - serial plotter" width = 500/>
+                                <p>
+                                    Aftwerwards, I took a video of rotating the IMU in different directions and plotted the pitch and roll in the Serial Plotter.
                                 </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/YuZhnP5RQd8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p> 
                                     When running the RC car in its proximity there is extra noise in the accelerometer data. I recorded some of this data 
                                     by running the car near the accelerometer. I send this data from the Artemis to Python using a modified version of the 
                                     bluetooth code from lab 2. In Jupyter lab, I took the FFT of the pitch and the roll which was slightly noisy. In order 
-                                    to eliminate some of this noise, I implemented a complimentary low pass filter for both the pitch and roll.
-
-                                    if there is little noise -- check information on chip and reason why that might be (differ between kits)
+                                    to eliminate some of this noise, I implemented a low pass filter for both the pitch and roll.
                                 </p>
-                                
+                                <img src="assets\img\lab4\lab4_acc_time_v_pitch_nocar_yay.jpg" alt="accelerometer pitch no LPF" width = 600/>                                
+                                <img src="assets\img\lab4\lab4_acc_pitch_freqdom_nocar_yay.jpg" alt="accelerometer pitch frequendy domain no LPF" width = 600/>                                
+                                <img src="assets\img\lab4\lab4_acc_time_v_pitch_nocar_LPF.jpg" alt="accelerometer pitch LPF" width = 600/>                                
+                                <img src="assets\img\lab4\lab4_acc_pitch_freqdom_nocar_LPF.jpg" alt="accelerometer pitch frequendy domain LPF" width = 600/>  
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Gyroscope</h4>
@@ -440,7 +466,7 @@
                                 <img src="assets\img\lab4\lab4_gyro_equations.jpg" alt="equation for gyrpscope pitch roll, yaw" width = 500/>
                                 <p>
                                     As shown in the video values output from the gyroscope are much more steady than the outputs from the accelerometer.
-                                    However, overtime the "base line" values accumulates and shifts to have a large magnitude.
+                                    However, overtime the "baseline" values accumulates and shifts to have a large magnitude.
                                 </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/0UsWkfQscsw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p>
@@ -460,13 +486,13 @@
                                 <img src="assets\img\lab4\lab4_collect_data_timing.jpg" alt="timing for sampling data" width = 500/>
                                 <p>
                                     I integrated my code from Lab 3 to collect both ToF data and IMU data and sent it over bluetooth 
-                                    to my laptop. It could collect the data for 5s and then graphed the data using matplot.
-
+                                    to my laptop. It could collect the data for 5s and then graphed the data using matplot. 
                                     I think I ended up using separate arrays to store the ToF, Accelerometer, and Gyroscope Data.
-
-                                    Explain memory and allocation to arrays; seconds
                                 </p>
-                                
+                                <img src="assets\img\lab4\lab4_bt_all_data_stunt.jpg" alt="bluetooth all data printed" width = 500/>
+                                <p>
+                                    (Explain memory and allocation to arrays; seconds)
+                                </p>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Cut the Coord</h4>
@@ -500,8 +526,13 @@
                                 </p>                              
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/i09A-qVn9dA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>     
                                 <p>
-                                    graphs of results
-                                </p>                           
+                                    (graphs of results)
+                                </p>  
+                                <img src="assets\img\lab4\lab4_stunt_acc_yay.jpg" alt="stunt graph - accelerometer" width = 600/>  
+                                <img src="assets\img\lab4\lab4_stunt_gyro_yay.jpg" alt="stunt graph - gyroscope" width = 600/>  
+                                <img src="assets\img\lab4\lab4_stunt_comFilter_yay.jpg" alt="stunt graph - complimentary filter" width = 600/>  
+                                <img src="assets\img\lab4\lab4_stunt_tof_yay.jpg" alt="stunt graph - tof" width = 600/>  
+                                                
                             </div>
                         </div>
                     </div>
