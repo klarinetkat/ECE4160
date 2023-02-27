@@ -377,14 +377,137 @@
                     <h2 class="mb-5">Lab 4: IMU</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Lab 4 content</h3>
-                            <p>coming soon</p>
+                            <h3 class="mb-0">Objective</h3>
+                            <p>
+                                Lab 4's purpose is to familiarize oursevles with reading data from the IMU and understanding what is means. Also, run the Artemis with 
+                                the sensors from a battery. The final task is to record a stunt of the RC car and graph the IMU and TOF data.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Lab Tasks</h3>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Set up the IMU</h4>
+                                <p>
+                                    In order to set up the IMU, we had to install the SParkFun 9DOF IMU Breakout - ICM 20948 - Arduino library. The basics example was 
+                                    run to see if IMU's accelerometer and gyroscope were properly measuring data. Below is a video of the example code running.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/N4BcSB49qXI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    AD0_VAL should be 1 ...
+                                </p>
+                                <p>
+                                    In order to know that the board is running the blue LED on the Artemis board toggles on and off three times on start up.
+                                    For this lab it helps know if the IMU is ready to collect data and as an indication for if the Artemis reruns the code.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/kXhYHhc1YAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Accelerometer</h4>
+                                <p>
+                                    During lecture we went over the equations for pitch (rotation around the y-axis) and roll (rotation around the x-axis):
+                                </p>
+                                <img src="assets\img\lab4\lab4_acc_equations.jpg" alt="equation for pitch and roll" width = 500/>
+                                <p>
+                                    I made a separate ardunio file that initializes the IMU to collect data and print into the serial monitor in a specific format
+                                    so I could later on connect a separate Serial Plot to receive the data from the same COM the Artemis was connect to. 
+                                    
+                                    First, I used my lab box as a guide to make sure I was tilting the IMU by +/- 90 degrees about both the x- and y-axis. The images 
+                                    below show the different orienations with the pitch and roll printed in the Serial Monitor and displayed in the Serial Plotter.
+                                    
+                                    Aftwerwards, I plotted the pitch and roll in the Serial Plotter and took a video as I rotated the IMU in different directions.
+                                    Below is a video of:
+
+                                    insert images and video
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/YuZhnP5RQd8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p> 
+                                    When running the RC car in its proximity there is extra noise in the accelerometer data. I recorded some of this data 
+                                    by running the car near the accelerometer. I send this data from the Artemis to Python using a modified version of the 
+                                    bluetooth code from lab 2. In Jupyter lab, I took the FFT of the pitch and the roll which was slightly noisy. In order 
+                                    to eliminate some of this noise, I implemented a complimentary low pass filter for both the pitch and roll.
+
+                                    if there is little noise -- check information on chip and reason why that might be (differ between kits)
+                                </p>
+                                
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Gyroscope</h4>
+                                <p>
+                                    In lecture we also discussed the equations to compute the pitch, roll, and yaw using the gyroscope data:
+                                </p>
+                                <img src="assets\img\lab4\lab4_gyro_equations.jpg" alt="equation for gyrpscope pitch roll, yaw" width = 500/>
+                                <p>
+                                    As shown in the video values output from the gyroscope are much more steady than the outputs from the accelerometer.
+                                    However, overtime the "base line" values accumulates and shifts to have a large magnitude.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/0UsWkfQscsw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    In order to have both the steady nature of the gyroscope and the accuracy of the accelerometer I 
+                                    implemented a complimentary filter to compute an estimated pitch and roll using information from 
+                                    both the gyroscope and accelerometer.
+                                </p>
+                                <img src="assets\img\lab4\lab4_compFilter_equations.jpg" alt="equation for complimentary filter" width = 500/>
+
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/8Ayo6PnQJe4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Sample Data</h4>
+                                <p>
+                                    I can sample data as fast as 2-3 milliseconds. (show screenshot)
+                                </p>
+                                <p>
+                                    I integrated my code from Lab 3 to collect both ToF data and IMU data and sent it over bluetooth 
+                                    to my laptop. It could collect the data for 5s and then graphed the data using matplot.
+
+                                    I think I ended up using separate arrays to store the ToF, Accelerometer, and Gyroscope Data.
+
+                                    Explain memory and allocation to arrays; seconds
+                                </p>
+                                
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Cut the Coord</h4>
+                                <p>
+                                    We have two different batteries. One 3.7A 850mAh for the motors and one 3.7A 650mAh for the Artemis and sensors.
+                                    
+                                    (why using battery with more capacity for motors)
+                                    
+                                    In order to connect the 650mAh battery to the Artemis, I soldered the cables to the JST connector and used heat shrink 
+                                    to cover the job.
+                                </p>
+                                <img src="assets\img\lab4\artemis_sensors_batteries.jpg" alt="artemis with battery and sensors" width = 600/>                                
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Record a Stunt</h4>
+                                <p>
+                                    I plugged in the 850mAh battery to the RC car and drove it around the hallway for a little while as shown in the video.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/-sUPYsqnodo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    Aftwards I attached the 650mAh to the Artemis and everything to the RC car.
+                                    I put one TOF sensor on the left side of the car and the other one on the front of the car. I mounted the IMU, Artemis,
+                                    and QWIIC breakout board to one side of the car and the battery to the other side of the car.
+                                    I was able to test and see that the bluetooth successfully connected and data collected and sent to my laptop to analyze and graph the outputs
+                                    from the accelerometer, gyroscope, and TOF sensors. 
+                                </p>
+                                <img src="assets\img\lab4\robot_sensors_attached.jpg" alt="artemis with sensors attached to RC car"/>                                
+                                <img src="assets\img\lab4\robot_battery.jpg" alt="battery attached to RC car"/>  
+                                <p>
+                                    Below is a video of the stunt with everything attached and collecting data: 
+                                </p>                              
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/i09A-qVn9dA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>     
+                                <p>
+                                    graphs of results
+                                </p>                           
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">More lab content</h3>
-                            <p>coming soon</p>
+                            <h3 class="mb-0">Resources</h3>
+                            <p>Thank you</p>
                         </div>
                     </div>
                 </div>
