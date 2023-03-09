@@ -410,7 +410,7 @@
                                 <img src="assets\img\lab4\lab4_acc_equations.jpg" alt="equation for pitch and roll" width = 500/>
                                 <p></p>
                                 <p>
-                                    I made a separate ardunio file that initializes the IMU to collect data and print into the serial monitor in a specific format
+                                    I made a separate arduino file that initializes the IMU to collect data and print into the serial monitor in a specific format
                                     of "data1,data2" so I could plot the data in the Serial Plotter which receive the data from the same COM the Artemis is connect to. 
                                 </p>
                                 <p>
@@ -507,9 +507,9 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Cut the Coord</h4>
                                 <p>
-                                    We have two different batteries. One 3.7A 850mAh for the motors and one 3.7A 650mAh for the Artemis and sensors.
+                                    We have two different batteries. One 3.7V 850mAh for the motors and one 3.7V 650mAh for the Artemis and sensors.
                                     We are using the 850mAh one for the motors because the motors will use up the battery much faster. In addition, for the later labs we will be using motor drivers to control the 
-                                    RC car's motors which will require more current. On the otherhand, the Artemis uses the 650mAh battery sine it does 
+                                    RC car's motors which will require more current. On the otherhand, the Artemis uses the 650mAh battery since it does 
                                     not require as much power.
                                 </p>
                                 <p>
@@ -565,14 +565,180 @@
                     <h2 class="mb-5">Lab 5: Motor Driver and Open Loop Control </h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Lab 5 content</h3>
-                            <p>coming soon</p>
+                            <h3 class="mb-0">Objective</h3>
+                            <p>
+                                In lab 5 we go from manual to open loop control of the car. This is done 
+                                by opening the RC car and replacing the PCB with the Artemis and dual motor drivers.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Prelab</h3>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Diagram</h4>
+                                <img src="assets\img\lab5\lab5_diagram.png" alt="schematic" width = 500/>
+                                <p>
+                                    For motor control on the Artemis I ended up using pins 9 and 4 for the right motor
+                                    and pins 6 and 7 for the left motor. Originally I wanted to use pins 12 and 13 however,
+                                    after debugging it seemed there was an issue with sending signals from those pins.
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Batteries</h4>
+                                <p>
+                                    We power the the Artemis and the motors from separate batteries because they have different power requirements.
+                                    The Artemis is powered by the 3.7V 650mAh battery. Whearas the motors are powered by the 3.7V 80mAh battery.
+                                    The motors use up a lot of power/current which is the reason we should power them with a separate battery.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Lab Tasks</h3>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Soldering Motor Drivers</h4>
+                                <p>
+                                    I soldered both motor drivers at the same time so I didn't have to 
+                                    do all the work for one and then repeat the process for the other.
+                                    I connected the inputs and outputs of A to B the dual motor drivers by looping the wire between the pins and 
+                                    using either heatshrink and solder to connect them in place.
+                                    I also soldered wires for VIN and both GNDs (one to connect to the Artemis and the other to connect to the battery).
+                                </p>
+                                <p>
+                                    I ended up using solid core wires which might be a problem for later labs if I have to do repairs.
+                                    I didn't think about using the stranded wires until after I finished soldering both of my motor drivers.
+                                    One pro to using the solid core wires is that the motor drivers kinda just float in the air.
+                                    The con to using solid-core wires is that they might break during some of the high acceleration tricks.
+                                    But I guess I'll have to deal with the consequences in the following labs.
+                                </p>
+                                <img src="assets\img\lab5\lab5_motor_driver.jpg" alt="motor drivers" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">PWM Signals from Artemis</h4>
+                                <p>
+                                    I used the oscilloscope to display the motor driver outputs as I used analogWrite (values range from 0 to 255)
+                                    to generate a PWM input from the Artemis. I kept one input at 0 and then adjusting the other input 
+                                    to be a value between 0 and 255. 
+                                </p>
+                                <p>
+                                    Below are some of the PWM values I tested with their scope:
+                                </p>
+                                <p>
+                                    Value 150:
+                                </p>
+                                <img src="assets\img\lab5\pwm_150_code.jpg" alt="pwm 150 code" width = 500/>
+                                <img src="assets\img\lab5\pwm_150_osc.jpg" alt="pwm 150 oscilloscope" width = 500/>
+                                <p>
+                                    Value 100:
+                                </p>
+                                <img src="assets\img\lab5\pwm_100_osc.jpg" alt="pwm 100 oscilloscope" width = 500/>
+                                <p>
+                                    Value 10:
+                                </p>
+                                <img src="assets\img\lab5\pwm_10_osc.jpg" alt="pwm 10 oscilloscope" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Testing One Dual Motor Drivers with PWM Inputs</h4>
+                                <p>
+                                    When testing one dual motor driver, I used an external power supply that hand
+                                    an output voltage of 3.7V since when the car is running the battery we will use
+                                    will be 3.7V 850mAh.
+                                </p>
+                                <p>
+                                    I continued to use the oscilloscope to display the motor driver outputs.
+                                    To change the direction of the motor (clockwise or counterclockwise) I switched
+                                    the inputs for the one that is set to 0 and the one I was adjusting. If I wanted the motor to stop, both inputs 
+                                    were set to 0.
+                                </p>
+                                <p>
+                                    Below is a video of the left set of motors rotating and the video of the oscilloscope scoping the outputs.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/SPVTORo74xg" title="Testing Left Motor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p></p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/kbnIOW2FYJ8" title="Testing Left Motor Oscilloscope" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p></p>
+                                <p>
+                                    Below is a video of the right set of motors rotating and the video of the oscilloscope scoping the outputs.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/pLOCZA5mExo" title="Testing Right Motor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p></p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/328mtsOACzo" title="Testing Right Motor Oscilloscope" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Test Both Dual Motor Drivers at the same time</h4>
+                                <p>
+                                    Afterwards, I attached the motor driver to be powered by the battery and tested if both motors could run at the same time. 
+                                    First I had both motors rotate in the clockwise direction (one forward, one backward) and then afterwards I changed the PWM input 
+                                    for both motors to rotate in the forward direction and the backwards direction.
+                                </p>
+                                <p>
+                                    One interesting issue I ran into was that the motors works fine when running them on their own and in opposite directions at the same time.
+                                    However, when I tried to run them both in the forward direction my left motor did not spin. I debugged with the oscilloscope and the inputs to 
+                                    the motor driver from the Artemis did not appear as desired. I ended up resoldering the motor driver inputs from pins 12 and 13 to pins 9 and 4.
+                                </p>
+                                <p>
+                                    Below is a video of the motors turning at the same time:
+                                </p>
+                                <img src="assets\img\lab5\lab5_analog_write.png" alt="both motor drivers analogWrite" width = 500/>
+                                <p></p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/ejtPq7SHqoY" title="Testing Both Motors" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Pics of My Finished Car</h4>
+                                <img src="assets\img\lab5\lab5_labeled_car.png" alt="finished set-up" width = 500/>
+                                <p></p>
+                                <p>
+                                    I was able to attached everything to the car by using electrical tape. The motor drivers ended up floating in the air.
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Running on Ground</h4>
+                                <p>
+                                    I tried running the car directly on the ground. In order to make it easier to send different PWM values to the motors, 
+                                    I created a new command in ble_arduino to take in two inputs (one for each motor) and then run for a short period of time before stopping.
+                                    The reason for using bluetooth is that I didn't want to continue compiling and burning code onto the Artemis if I only how to change a couple of values.
+                                </p>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Lower PWM Limit</h4>
+                                <p>
+                                    To find the lower PWM value that the robot could move on the ground when starting from rest and when already in motion.
+                                    After sending a variety of values to the robot, the lower PWM value to start the robot from rest is around 30. 
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/nE4243N43MU" title="Lower PWM Limit from Rest" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    To find the lower PWM value that allows for the robot to move on when already running, I input different values starting from 
+                                    50 and decrementing by intervals fo 5 until a value of 15. I also printed which value I was inputing so I could watch when the
+                                    robot slows down and stops. It turned out the lower PWM value for when the robot is already running is around 20.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/e90P-SUotO4" title="Lower PWM Limit in Motion" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Calibration Factor</h4>
+                                <p>
+                                    For the calibration factor, I just played around with different input values on both motors until the car moved in a fairly straight line.
+                                    My input values were 70 for the right motor and 50 for the left motor.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/FlgZ9B8rSec" title="Motor Calibration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Open Loop</h4>
+                                <p>
+                                    I made a separte command for my open loop demonstration. Within the command in Arduino I added a series of different movements.
+                                    Going straight, spinning clockwise, going backwards, and spining counter-clockwise.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/HrOJt89kRPw" title="Open Loop" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">More lab 5 stuff</h3>
-                            <p>yay</p>
+                            <h3 class="mb-0">Resources</h3>
+                            <p>
+                                
+                            </p>
                         </div>
                     </div>
                 </div>
