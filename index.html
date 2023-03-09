@@ -630,10 +630,12 @@
                                 </p>
                                 <img src="assets\img\lab5\pwm_150_code.jpg" alt="pwm 150 code" width = 500/>
                                 <img src="assets\img\lab5\pwm_150_osc.jpg" alt="pwm 150 oscilloscope" width = 500/>
+                                <p></p>
                                 <p>
                                     Value 100:
                                 </p>
                                 <img src="assets\img\lab5\pwm_100_osc.jpg" alt="pwm 100 oscilloscope" width = 500/>
+                                <p></p>
                                 <p>
                                     Value 10:
                                 </p>
@@ -681,7 +683,7 @@
                                 <p>
                                     Below is a video of the motors turning at the same time:
                                 </p>
-                                <img src="assets\img\lab5\lab5_analog_write.png" alt="both motor drivers analogWrite" width = 500/>
+                                <img src="assets\img\lab5\lab5_analog_write.png" alt="both motor drivers analogWrite" width = 300/>
                                 <p></p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/ejtPq7SHqoY" title="Testing Both Motors" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
@@ -700,6 +702,7 @@
                                     I created a new command in ble_arduino to take in two inputs (one for each motor) and then run for a short period of time before stopping.
                                     The reason for using bluetooth is that I didn't want to continue compiling and burning code onto the Artemis if I only how to change a couple of values.
                                 </p>
+                                <img src="assets\img\lab5\lab5_ble_pwm_forward.png" alt="bluetooth pwm command" width = 500/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Lower PWM Limit</h4>
@@ -714,6 +717,8 @@
                                     robot slows down and stops. It turned out the lower PWM value for when the robot is already running is around 20.
                                 </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/e90P-SUotO4" title="Lower PWM Limit in Motion" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p></p>
+                                <img src="assets\img\lab5\lab5_lower_pwm_motion_python.png" alt="lower pwm limit print statements" width = 500/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Calibration Factor</h4>
@@ -726,8 +731,8 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Open Loop</h4>
                                 <p>
-                                    I made a separte command for my open loop demonstration. Within the command in Arduino I added a series of different movements.
-                                    Going straight, spinning clockwise, going backwards, and spining counter-clockwise.
+                                    I made a separate command for my open loop demonstration. Within the command in Arduino I added a series of different movements.
+                                    Going straight, spinning clockwise, going backwards, and spinning counter-clockwise.
                                 </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/HrOJt89kRPw" title="Open Loop" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
