@@ -757,31 +757,107 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Objective</h3>
                             <p>
-                                The purpose of lab 6 was to become familiar with using PID control.
-                                
+                                The purpose of lab 6 was to become familiar with using PID control. It is one part of a series of labs 
+                                dealing with PID control, sensor fusion, and stunts. We were given the option of doing
+                                position control or orientation control, I chose position control. We also had to choose a controller 
+                                that would work best for our system, I chose PID. 
                             </p>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Prelab</h3>
+                            <p>
+                                For the prelab we had to establish a good system for debugging the rest of the lab. I made a copy of my bluetooth code
+                                from the previous labs and cleaned it up to only have a few command for this lab.                                
+                                I planned to use two bluetooth commands to communicate between my laptop and the Artemis. 
+                                One command takes in the sensor meausurements, controls the robot, and stores 
+                                the data in arrays. The other command sends the data that was stored in the arrays over bluetooth to my laptop in python. Since I knew 
+                                I wanted to do position control which only requires me to save data about the time, TOF sensors, and motor speed. On the python side, 
+                                I saved the arrays of data into pickle files so I could access the data to later on make graphs and for lab 7.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Task A: Position Control</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Prelab</h4>
+                                <h4 class="mb-0">Implementing PID</h4>
                                 <p>
-                                    prelab things
+                                    At first I wasn't sure which controller I was going to use so I just implemented PID and planned to 
+                                    incrementally pick the coefficients based on my results using the robot. The error was based on
+                                    how the difference betweeen the tof sensor reading and 1ft (304mm) since the robot needed to stop
+                                    about 1 ft away from the wall. I also had to adjust if the robot would go forward or backward
+                                    depending on the error. I based my implementation on the slides provided to use in lecture and 
+                                    also the implementation of PID from a class (ECE 4760 - Design Microcontrollers) that I took last 
+                                    semester. The motor values are from 0-255 but as in the previous lab I found the lower PWM value to
+                                    be around 30. However, I redid this and set the minmum value to 40 and then set the max value to 200.
                                 </p>
+                                <img src="assets\img\lab6\lab6_pid_code.png" alt="pid code" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Process</h4>
+                                <p>
+                                    My bluetooth command allows me to input the kp, ki, and kd, values so I can quickly test out different
+                                    values without having to edit the arduino code. My arrays had a size of about 200 and the motors had an
+                                    automatic stop after running for 15sec. Some of the values in the array ended up being 0 so I made a function
+                                    to get rid of the extra zeros that did not contribute to the data.
+                                </p>
+                                <img src="assets\img\lab6\lab6_pid_bluetooth.png" alt="pid bluetooth" width = 500/>
+                                <img src="assets\img\lab6\lab6_shorten_array.png" alt="shorth array" width = 500/>
+                                <p>
+                                    I followed heuristic procedure #2 when deciding on the values. I set ki and kd to zero
+                                    and adjusted the kp value. I started at a very small kp value (0.001)
+                                    and increased the values until the robot stopped around 1ft away from the wall. The kp value was set to 0.004.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/wsXWVFGD_3c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab6\lab6_kp0-004_ki0_kd0_dist.png" alt="kp=0.004 dist" width = 500/>
+                                <img src="assets\img\lab6\lab6_kp0-004_ki0_kd0_speed.png" alt="kp=0.004 speed" width = 500/>
+                                <p>
+                                    Then I decrease the kp value by a factor of 2-4 and slowly increased ki until there was a loss of stability.
+                                    The kp value was set to 0.0015 and the ki value was set to 0.003. As you can see the robot goes passed the 
+                                    1ft mark but moved backwards to the proper position.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/UeZLiShSe6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab6\lab6_kp0-0015_ki0-003_kd0_dist.png" alt="kp=0.0015 ki=0.003 dist" width = 500/>
+                                <img src="assets\img\lab6\lab6_kp0-0015_ki0-003_kd0_speed.png" alt="kp=0.0015 ki=0.003 speed" width = 500/>
+                                <p>
+                                    Then I added the kd value and increased it until there was some sort of response to the disturbance.
+                                    The kp value was set to 0.0015, ki set to 0.004, and kd was set to 0.04.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/hbZLLua__L0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab6\lab6_kp0-0015_ki0-004_kd0-04_dist.png" alt="kp=0.0015 ki=0.004 kd=0.04 dist" width = 500/>
+                                <img src="assets\img\lab6\lab6_kp0-0015_ki0-004_kd0-04_speed.png" alt="kp=0.0015 ki=0.003 kd=0.04 speed" width = 500/>
+                                <p>
+                                    The robot kept stopping so I decided to increase the kp value to 0.015.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/-S0QDouXZ70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab6\lab6_kp0-015_ki0-004_kd0-04_dist.png" alt="kp=0.015 ki=0.004 kd=0.04 dist" width = 500/>
+                                <img src="assets\img\lab6\lab6_kp0-015_ki0-004_kd0-04_speed.png" alt="kp=0.015 ki=0.003 kd=0.04 speed" width = 500/>
+                                <p>
+                                    Afterwards I was talking to another classmate and they recommended using a high kp and kd value.
+                                    The robot went way faster then before. The values used below were kp = 0.08, ki = 0.025, and kd = 0.3.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/M7KNSjFtFnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab6\lab6_kp0-08_ki0-025_kd0-3_dist.png" alt="kp=0.08 ki=0.025 kd=0.3 dist" width = 500/>
+                                <img src="assets\img\lab6\lab6_kp0-08_ki0-025_kd0-3_speed.png" alt="kp=0.08 ki=0.025 kd=0.3 speed" width = 500/>
+                                <p>
+                                    I played around with the values some more and ended up with 
+                                    kp = 0.08, ki = 0.006, and kd = 0.3.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/ensLGbgKGLc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab6\lab6_kp0-08_ki0-006_kd0-3_dist.png" alt="kp=0.08 ki=0.006 kd=0.3 dist" width = 500/>
+                                <img src="assets\img\lab6\lab6_kp0-08_ki0-006_kd0-3_speed.png" alt="kp=0.08 ki=0.006 kd=0.3 speed" width = 500/>
                             </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Lab Tasks</h3>
-                            <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
-                                <p>
-                                    task 1
-                                </p>
-                            </div>
+                            <h3 class="mb-0">Resources</h3>
+                            <p>
+                                I used my PID implementation from ECE 4760. I also spoke with Liam Kain about increasing the 
+                                kp and ki values to make the robot fast.
+                            </p>
                         </div>
                     </div>
                 </div>
