@@ -931,7 +931,7 @@
                                     were then used to compute the A and B matrix.
                                 </p>
                                 <img src="assets\img\lab7\lab7_a_matrix.png" alt="a matrix - formula" width = 200/>
-                                <img src="assets\img\lab7\lab7_b_matrix.png" alt="b matrix - formula" width = 200/>
+                                <img src="assets\img\lab7\lab7_b_matrix.png" alt="b matrix - formula" width = 150/>
                                 <img src="assets\img\lab7\lab7_KFTest_code_init.png" alt="kf filter - initialize" width = 500/>
                             </div>
                             <div class="flex-grow-1 mb-5">
@@ -945,23 +945,27 @@
                                     I played around with the sigma value to put more confidence either in the model or in the data points.
                                 </p>
                                 <p>
-                                    The orginal sigma value 10, 10, 20
+                                    The orginal sigma values:
                                 </p>
                                 <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_20.png" alt="kf filter - sigma 10 10 20" width = 500/>
+                                <p></p>
                                 <p>
-                                    Changing the sigma values to 10, 10, 200 put more trust on the model
+                                    Changing the sigma values to put more trust on the model:
                                 </p>
                                 <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_200-trust_model_more.png" alt="kf filter - sigma 10 10 200" width = 500/>
+                                <p></p>
                                 <p>
-                                    Changing the sigma values to 100, 100, 20 put more trust into the sensor data
+                                    Changing the sigma values to put more trust into the TOF sensor data:
                                 </p>
                                 <img src="assets\img\lab7\lab7_KFTest_sig1-100_sig2-100_sig3_20-trust_sensors_more.png" alt="kf filter - sigma 100 100 20" width = 500/>
+                                <p></p>
                                 <p>
-                                    Changing the sigma values back to 10, 10, 20 but instead being more confident in starting position
+                                    Original sigma values: Confident in starting position
                                 </p>
                                 <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_20_confident_in_0_startPos.png" alt="kf filter - sigma 10 10 20 - confident start position 0" width = 500/>
+                                <p></p>
                                 <p>
-                                    being confident in start position that is off by 500 mm
+                                    Original sigma values: Confident in starting position that is off by 500 mm
                                 </p>
                                 <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_20_confident_in_-500_startPos.png" alt="kf filter - sigma 10 10 20 - confident start position -500" width = 500/>
                             </div>
