@@ -880,30 +880,107 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Objective</h3>
                             <p>
-                                purpose
+                                The purpose of lab 7 was to implement the Kalman Filter to help execute 
+                                the task from lab 6 at a much faster speed. First we implemented the Kalman
+                                Filer in python. For the last part of the lab we were supposed to implement 
+                                the Kalman Filter directly on the robot however, due to the Snow Day we were
+                                given the option to just extrapolate the next position based on the most recent time-of-flight 
+                                data point.
                             </p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Prelab</h3>
-                            <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Prelab</h4>
-                                <p>
-                                    prelab things
-                                </p>
-                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
+                                <h4 class="mb-0">Task 1: Estimate Drag and Momentum</h4>
                                 <p>
-                                    task 1
+                                    To estimate the drag and momentum, I used a step response to gather
+                                    information about the motor input values and ToF sensor output.
+                                </p>
+                                <p>
+                                    Based on the last trial of my lab 6, I chose the PWM value of my motor to be 200.
+                                    In order to find the steady state velocity and the 90% rise time to get to the steady 
+                                    state velocity, I had to do two different runs. The first run was starting the robot
+                                    from over 4.5m (out of range for the ToF sensors) so I could see what the steady state
+                                    velocity was. The second one was from less than 4.5m so I could properly see the 
+                                    value of the 90% rise time.
+                                </p>
+                                <p>
+                                    Starting Robot from over 4.5m (begins out of range for ToF sensors)
+                                </p>
+                                <img src="assets\img\lab7\lab7_dm_long_motor_input.png" alt="motor input - long dist" width = 500/>
+                                <img src="assets\img\lab7\lab7_dm_long_dist.png" alt="dist - long dist" width = 500/>
+                                <img src="assets\img\lab7\lab7_dm_long_vel.png" alt="velocity - long dist" width = 500/>
+                                <p>
+                                    Starting Robot from less than 4.5m
+                                </p>
+                                <img src="assets\img\lab7\lab7_dm_short_motor_input.png" alt="motor input - short dist" width = 500/>
+                                <img src="assets\img\lab7\lab7_dm_short_dist.png" alt="dist - short dist" width = 500/>
+                                <img src="assets\img\lab7\lab7_dm_short_vel.png" alt="velocity - short dist" width = 500/>
+                                <p>
+                                    Based on these trials the steady state speed is 3000mm/s and 90% rise time was 1.5s.
                                 </p>
                             </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Task 2: Initialize KF</h4>
+                                <img src="assets\img\lab7\lab7_drag_formula.png" alt="drage formula" width = 200/>
+                                <img src="assets\img\lab7\lab7_mass_formula.png" alt="mass formula" width = 200/>
+                                <p>
+                                    Using the steady state speed and the 90% rise time I calculate the drag and mass. The drag and mass 
+                                    were then used to compute the A and B matrix.
+                                </p>
+                                <img src="assets\img\lab7\lab7_a_matrix.png" alt="a matrix - formula" width = 200/>
+                                <img src="assets\img\lab7\lab7_b_matrix.png" alt="b matrix - formula" width = 200/>
+                                <img src="assets\img\lab7\lab7_KFTest_code_init.png" alt="kf filter - initialize" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Task 3: Implement and test Kalman Filter in Jupyter</h4>
+                                <p>
+                                    I mainly followed the steps and code provided to us in class for implementing the Kalman Filter.
+                                </p>
+                                <img src="assets\img\lab7\lab7_kalman_filter_slide.png" alt="kf filter - slide" width = 500/>
+                                <img src="assets\img\lab7\lab7_KFTest_code_function.png" alt="kf filter - code" width = 500/>
+                                <p>
+                                    I played around with the sigma value to put more confidence either in the model or in the data points.
+                                </p>
+                                <p>
+                                    The orginal sigma value 10, 10, 20
+                                </p>
+                                <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_20.png" alt="kf filter - sigma 10 10 20" width = 500/>
+                                <p>
+                                    Changing the sigma values to 10, 10, 200 put more trust on the model
+                                </p>
+                                <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_200-trust_model_more.png" alt="kf filter - sigma 10 10 200" width = 500/>
+                                <p>
+                                    Changing the sigma values to 100, 100, 20 put more trust into the sensor data
+                                </p>
+                                <img src="assets\img\lab7\lab7_KFTest_sig1-100_sig2-100_sig3_20-trust_sensors_more.png" alt="kf filter - sigma 100 100 20" width = 500/>
+                                <p>
+                                    Changing the sigma values back to 10, 10, 20 but instead being more confident in starting position
+                                </p>
+                                <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_20_confident_in_0_startPos.png" alt="kf filter - sigma 10 10 20 - confident start position 0" width = 500/>
+                                <p>
+                                    being confident in start position that is off by 500 mm
+                                </p>
+                                <img src="assets\img\lab7\lab7_KFTest_sig1-10_sig2-10_sig3_20_confident_in_-500_startPos.png" alt="kf filter - sigma 10 10 20 - confident start position -500" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Task 4A: Extrapolation</h4>
+                                <p>
+                                    I extrapolated the values based on the ToF sensors. I made a separate function to calculate
+                                    the extrapolated values and stored them in a separate array. At first I didn't realized we were
+                                    just seeing how well our model followed the senor data. 
+                                </p>
+                                <img src="assets\img\lab7\lab7_extrapolation_code.png" alt="extrapolation - code" width = 500/>
+                                <img src="assets\img\lab7\lab7_extrapolation.png" alt="extrapolation - graph" width = 500/>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Resources</h3>
+                            <p>
+                                I looked at Anya's website from last year. I also ask Liam Kain for some debugging help.
+                            </p>
                         </div>
                     </div>
                 </div>
