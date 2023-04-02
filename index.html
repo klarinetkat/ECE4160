@@ -929,7 +929,7 @@
                                 <p>
                                     The steady state speed was used to calculate the drag and u was set to be 1. The drag
                                     was calculated to be 0.00033. The drag and 90% rise time were used to calculate m to be
-                                    2.17 <s>times</s><h:math>10^-4</h:math> .
+                                    2.17*10^-4.
                                 </p>
                                 <p>
                                     The drag and mass were then used to compute the A and B matrix.
@@ -950,7 +950,7 @@
                                 <img src="assets\img\lab7\lab7_KFTest_code_function.png" alt="kf filter - code" width = 500/>
                                 <p>
                                     I played around with the sigma value to put more confidence either in the model or in the data points.
-                                    To start off I set <s>sigma_1</s> = 10
+                                    To start off I set sigma_1 = 10, sigma_2 = 10, and sigma_3 = 20.
                                 </p>
                                 <p>
                                     The orginal sigma values:
@@ -982,7 +982,8 @@
                                 <p>
                                     I extrapolated the values based on the ToF sensors. I made a separate function to calculate
                                     the extrapolated values and stored them in a separate array. At first I didn't realized we were
-                                    just seeing how well our model followed the senor data. 
+                                    just seeing how well our model followed the senor data. I thought we had to use our extrapolator 
+                                    to control our motors but that will happen in lab 8.
                                 </p>
                                 <img src="assets\img\lab7\lab7_extrapolation_code_no_print.png" alt="extrapolation - code" width = 500/>
                                 <img src="assets\img\lab7\lab7_extrapolation.png" alt="extrapolation - graph" width = 500/>
@@ -993,7 +994,8 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Resources</h3>
                             <p>
-                                I looked at Anya's website from last year. I also ask Liam Kain for some debugging help.
+                                I looked at Anya's website from last year. Liam Kain also helped me debug my extrapolator since it was 
+                                hard faulting due to the arrays of the estimations not being big enough.
                             </p>
                         </div>
                     </div>
