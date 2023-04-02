@@ -924,25 +924,33 @@
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 2: Initialize KF</h4>
-                                <img src="assets\img\lab7\lab7_drag_formula.png" alt="drage formula" width = 200/>
+                                <img src="assets\img\lab7\lab7_drag_formula.png" alt="drag formula" width = 150/>
                                 <img src="assets\img\lab7\lab7_mass_formula.png" alt="mass formula" width = 200/>
                                 <p>
-                                    Using the steady state speed and the 90% rise time I calculate the drag and mass. The drag and mass 
-                                    were then used to compute the A and B matrix.
+                                    The steady state speed was used to calculate the drag and u was set to be 1. The drag
+                                    was calculated to be 0.00033. The drag and 90% rise time were used to calculate m to be
+                                    <h:math> 2.17 times 10^-4</h:math> .
+                                </p>
+                                <p>
+                                    The drag and mass were then used to compute the A and B matrix.
                                 </p>
                                 <img src="assets\img\lab7\lab7_a_matrix.png" alt="a matrix - formula" width = 200/>
                                 <img src="assets\img\lab7\lab7_b_matrix.png" alt="b matrix - formula" width = 150/>
+                                <p>
+                                    The C matrix was provided to us in lecture: C = [-1  0].
+                                </p>
                                 <img src="assets\img\lab7\lab7_KFTest_code_init.png" alt="kf filter - initialize" width = 500/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Task 3: Implement and test Kalman Filter in Jupyter</h4>
                                 <p>
-                                    I mainly followed the steps and code provided to us in class for implementing the Kalman Filter.
+                                    I mainly followed the steps and code provided to us in lecture for implementing the Kalman Filter.
                                 </p>
                                 <img src="assets\img\lab7\lab7_kalman_filter_slide.png" alt="kf filter - slide" width = 500/>
                                 <img src="assets\img\lab7\lab7_KFTest_code_function.png" alt="kf filter - code" width = 500/>
                                 <p>
                                     I played around with the sigma value to put more confidence either in the model or in the data points.
+                                    To start off I set <h:math>sigma_1 = 10</h:math>
                                 </p>
                                 <p>
                                     The orginal sigma values:
