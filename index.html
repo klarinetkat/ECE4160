@@ -1012,29 +1012,91 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Objective</h3>
                             <p>
-                                purpose
+                                The purpose of this lab was to combine all the work we did to a fast stunt. Since I 
+                                chose Task A: Position Control in lab 6, the stunt I completed was to quickly drive the robot 
+                                from the designated start line, flip when reaching the sticky mat, and drive back from where it came.
                             </p>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Prelab</h3>
+                            <h3 class="mb-0">Lab Procedure</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Prelab</h4>
+                                <h4 class="mb-0">Stunt Set-up</h4>
                                 <p>
-                                    prelab things
+                                    I edited my lab 7 code by deleting the pid control and using my extrapolator quickly calculate the
+                                    distance from the robot to the wall. Once the robot gets within the range of the sticky mat it changes
+                                    direction from forwards to backwards to initiate the flip. 
+                                </p>
+                                <p>
+                                    Edited Code:
+                                </p>
+                                <img src="assets\img\lab8\lab8_arduino_code.png" alt="arduino code" width = 500/>
+                                <p>
+                                    I also ended up adding command inputs for the pwm values for each motor in the forward and 
+                                    backward direction as well as the desired flip distance from the wall.
+                                </p>
+                                <img src="assets\img\lab8\lab8_arduino_case_inputs.png" alt="arduino case inputs" width = 500/>
+                                <img src="assets\img\lab8\lab8_python_command.png" alt="python command inputs" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Trials and Errors</h4>
+                                <p>
+                                    I took many different trials in the hallway of Phillips Hall. As shown in the videos below there was much variety to 
+                                    how the robot interacted in the hallway which lead to me getting closer to completing the stunt.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/LkR9NHOaYic" title="Peace out" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    This allowed me to see that the robot is about to go forward in a straight line and is able to reverse direction when it 
+                                    gets to the specified distance from the wall. The issue here was that the motors were not fast enough to flip it over but 
+                                    it was able to angle the robot in a different direction. I increased the motor input values but still tried to maintain the 
+                                    straightness of robot which led to me having values of 250 and 192.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/QKnGWrO2PUA" title="Lifts off Ground" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    The robot's behavior is similar to the previous video however, it is able to lift partially off the ground. I need to increase 
+                                    the PWM values for the robot in the backwards direction.
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/OIiHStD7Dc0" title="Rotate Away" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>
+                                    Then the robot was able to flip but it ends up rotating away from where it came from. Liam recommended slightly angling the 
+                                    robot to account for the robots rotation during the turn. Then I was able to get actual trials for the robot. Yay!
                                 </p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
-                                <p>
-                                    task 1
-                                </p>
+                                <h4 class="mb-0">Stunt</h4>
+                                <div class="flex-grow-1 mb-5">
+                                    <h3 class="mb-0">Trial 1</h3>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/PWbqU5YSaB4" title="Trial 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p></p>
+                                    <img src="assets\img\lab8\lab8_trial3_dist.png" alt="trial 1: time vs dist" width = 500/>
+                                    <img src="assets\img\lab8\lab8_trial3_speed.png" alt="trial 1: time vs speed" width = 500/>
+                                </div>
+                                <div class="flex-grow-1 mb-5">
+                                    <h3 class="mb-0">Trial 2</h3>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/gKD1MUza06o" title="Trial 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p></p>
+                                    <img src="assets\img\lab8\lab8_trial4_dist.png" alt="trial 2: time vs dist" width = 500/>
+                                    <img src="assets\img\lab8\lab8_trial4_speed.png" alt="trial 2: time vs speed" width = 500/>
+                                </div>
+                                <div class="flex-grow-1 mb-5">
+                                    <h3 class="mb-0">Trial 3</h3>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/mJPtOPzV4rk" title="Trial 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p></p>
+                                    <img src="assets\img\lab8\lab8_trial5_dist.png" alt="trial 3: time vs dist" width = 500/>
+                                    <img src="assets\img\lab8\lab8_trial5_speed.png" alt="trial 3: time vs speed" width = 500/>
+                                </div>
+                                <div class="flex-grow-1 mb-5">
+                                    <h3 class="mb-0">Trial 4</h3>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/BeuzTxicrVo" title="Trial 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p></p>
+                                    <img src="assets\img\lab8\lab8_trial6_dist.png" alt="trial 4: time vs dist" width = 500/>
+                                    <img src="assets\img\lab8\lab8_trial6_speed.png" alt="trial 4: time vs speed" width = 500/>
+                                </div>
+                                <div class="flex-grow-1 mb-5">
+                                    <h3 class="mb-0">Cool Move for Fun</h3>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/GmAtfL5--YM" title="Cool Move" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
