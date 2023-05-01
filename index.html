@@ -1165,7 +1165,8 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Objective</h3>
                             <p>
-                                purpose
+                                The purpoes of lab 10 is to implement grid localization using Bayes filter
+                                on the the robot simulator.
                             </p>
                         </div>
                     </div>
@@ -1175,7 +1176,13 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Prelab</h4>
                                 <p>
-                                    prelab things
+                                    For the pre-lab we had to read through background information about
+                                    localization, sensor model, motion model, and Bayes Filter Algorithm.
+                                    This was so we could be prepared to implement everything in python.
+                                </p>
+                                <p>
+                                    The purpose of localization is to determine where the robot is located based on it's 
+                                    environment.
                                 </p>
                             </div>
                         </div>
@@ -1184,10 +1191,53 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
+                                <h4 class="mb-0">Compute Control</h4>
                                 <p>
-                                    task 1
+                                    The compute control helper function computes the control variables delta_rot1, delta_trans, and 
+                                    delta_rot2 based on the current and previous position from the odometry model. These are the 
+                                    equations from class that the code is based on.
                                 </p>
+                                <img src="assets\img\lab10\comput_control_equations.png" alt="equations" width = 300/>
+                                <img src="assets\img\lab10\code_compute_control.png" alt="compute control code" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Odometry Motion Model</h4>
+                                <p>
+                                    The Odometry motion model takes into account your current position, previous position, 
+                                    and where the robot was supposed to be to compute the probability of where the robot 
+                                    was expected to be versus where it actually is. This is done by using compute control 
+                                    to get the control information based on the provided current position and previous position 
+                                    then normalizing all the values of rotation1, translation1, and rotation2. Afterwards, 
+                                    the probability is computed for each of these values by using the gaussian distribution on 
+                                    difference between the actual and expected control variables with their respective sigmas.
+                                </p>
+                                <img src="assets\img\lab10\code_odom_model.png" alt="odom model code" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Prediction Step</h4>
+                                <p>
+                                    This is the prediction step of the Bayes Filter which updates the probabilites in the matrix
+                                    bel_bar which is the prior belief before the latest measurement. The code loops through 
+                                    the previous and current x, y, and rotation values to calculate the current position, previous
+                                    position, the odometry model, and the belief based on the previous x, y, and rotation
+                                    values. From here the summation of the product of odometry motion model and the belief
+                                    is calculated. Then, the numbers are added together and normalize to return the prior belief.
+                                </p>
+                                <img src="assets\img\lab10\prediction_step.png" alt="prediction step" width = 200/>
+                                <img src="assets\img\lab10\code_prediction_step.png" alt="prediction step code" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Sensor Model</h4>
+                                <p>
+                                    The sensor model is similar to the odometry model however, this function uses the gaussian distribution
+                                    to calculate the likelihoods the each individual sensor measurement based on the data collected by the
+                                    robot and the sensor sigma.
+                                </p>
+                                <img src="assets\img\lab10\code_sensor_model.png" alt="sensor model code" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Bayes Filter Algorithm Running</h4>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/yWiScYM8nXY" title="Bayes Filter" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -1195,7 +1245,7 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Resources</h3>
                             <p>
-                                Resources
+                                I looked at Anya's code and website as reference for this lab.
                             </p>
                         </div>
                     </div>
