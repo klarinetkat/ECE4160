@@ -1192,16 +1192,17 @@
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Compute Control</h4>
+                                <img src="assets\img\lab10\comput_control_equations.png" alt="compute control" width = 300/>
                                 <p>
                                     The compute control helper function computes the control variables delta_rot1, delta_trans, and 
                                     delta_rot2 based on the current and previous position from the odometry model. These are the 
                                     equations from class that the code is based on.
                                 </p>
-                                <img src="assets\img\lab10\comput_control_equations.png" alt="equations" width = 300/>
-                                <img src="assets\img\lab10\code_compute_control.png" alt="compute control code" width = 500/>
+                                <img src="assets\img\lab10\code_compute_control.png" alt="compute control code" width = 600/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Odometry Motion Model</h4>
+                                <img src="assets\img\lab10\assets\img\lab10\odom_model.png" alt="odom" width = 300/>
                                 <p>
                                     The Odometry motion model takes into account your current position, previous position, 
                                     and where the robot was supposed to be to compute the probability of where the robot 
@@ -1211,33 +1212,53 @@
                                     the probability is computed for each of these values by using the gaussian distribution on 
                                     difference between the actual and expected control variables with their respective sigmas.
                                 </p>
-                                <img src="assets\img\lab10\code_odom_model.png" alt="odom model code" width = 500/>
+                                <img src="assets\img\lab10\code_odom_model.png" alt="odom model code" width = 600/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Prediction Step</h4>
+                                <img src="assets\img\lab10\prediction_step.png" alt="prediction step" width = 300/>
                                 <p>
                                     This is the prediction step of the Bayes Filter which updates the probabilites in the matrix
                                     bel_bar which is the prior belief before the latest measurement. The code loops through 
                                     the previous and current x, y, and rotation values to calculate the current position, previous
                                     position, the odometry model, and the belief based on the previous x, y, and rotation
-                                    values. From here the summation of the product of odometry motion model and the belief
+                                    values. For this implementation, if the belief of the previou values is less than 0.0001 
+                                    the next calculations are not done to mitigate the computational load. From here the summation of the product of odometry motion model and the belief
                                     is calculated. Then, the numbers are added together and normalize to return the prior belief.
                                 </p>
-                                <img src="assets\img\lab10\prediction_step.png" alt="prediction step" width = 200/>
-                                <img src="assets\img\lab10\code_prediction_step.png" alt="prediction step code" width = 500/>
+                                <img src="assets\img\lab10\code_prediction_step.png" alt="prediction step code" width = 600/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Sensor Model</h4>
+                                <img src="assets\img\lab10\sensor_model.png" alt="sensor model" width = 300/>
                                 <p>
                                     The sensor model is similar to the odometry model however, this function uses the gaussian distribution
                                     to calculate the likelihoods the each individual sensor measurement based on the data collected by the
                                     robot and the sensor sigma.
                                 </p>
-                                <img src="assets\img\lab10\code_sensor_model.png" alt="sensor model code" width = 500/>
+                                <img src="assets\img\lab10\code_sensor_model.png" alt="sensor model code" width = 600/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Update Step</h4>
+                                <img src="assets\img\lab10\update_step.png" alt="update step" width = 300/>
+                                <p>
+                                    This is the update step of the Bayes Filter which returns the belief of the robot based on all 
+                                    the past sensor measurements and controls. It loops through the current x, y, and rotation values 
+                                    and calculates the prior belief, sensor model, the product of the vales in the sensor model probability
+                                    array. Then the belife is calculated by multiplying the product of the sensor model values by 
+                                    the prior belief. Then this is normalized.
+                                </p>
+                                <img src="assets\img\lab10\code_update_step.png" alt="update step code" width = 600/>
                             </div>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Bayes Filter Algorithm Running</h4>
+                                <img src="assets\img\lab10\bayes_filter_algorithm.png" alt="bayes" width = 300/>
+                                <p>
+                                    I ran the Bayes filter. The green line represents the ground truth, the red line is odometry, and the blue line is 
+                                    the Bayes filter values. It doesn't seem to have done too bad.
+                                </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/yWiScYM8nXY" title="Bayes Filter" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <img src="assets\img\lab10\map.png" alt="map" width = 300/>
                             </div>
                         </div>
                     </div>
