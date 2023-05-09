@@ -1166,7 +1166,8 @@
                             <h3 class="mb-0">Objective</h3>
                             <p>
                                 The purpoes of lab 10 is to implement grid localization using Bayes filter
-                                on the the robot simulator.
+                                on the robot simulator. This is to prepare us for what to expect in the next lab where we will 
+                                use localization on our actual robot.
                             </p>
                         </div>
                     </div>
@@ -1176,7 +1177,7 @@
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Prelab</h4>
                                 <p>
-                                    For the pre-lab we had to read through background information about
+                                    For the pre-lab we read through background information about
                                     localization, sensor model, motion model, and Bayes Filter Algorithm.
                                     This was so we could be prepared to implement everything in python.
                                     The purpose of localization is to determine where the robot is located based on it's 
@@ -1193,8 +1194,8 @@
                                 <img src="assets\img\lab10\comput_control_equations.png" alt="compute control" width = 300/>
                                 <p>
                                     The compute control helper function computes the control variables delta_rot1, delta_trans, and 
-                                    delta_rot2 based on the current and previous position from the odometry model. These are the 
-                                    equations from class that the code is based on.
+                                    delta_rot2 based on the current and previous position from the odometry model. The code is based on
+                                    using the delta_rot1, delta_trans, and delta_rot2 equations from class.
                                 </p>
                                 <img src="assets\img\lab10\code_compute_control.png" alt="compute control code" width = 600/>
                             </div>
@@ -1242,8 +1243,8 @@
                                 <p>
                                     This is the update step of the Bayes Filter which returns the belief of the robot based on all 
                                     the past sensor measurements and controls. It loops through the current x, y, and rotation values 
-                                    and calculates the prior belief, sensor model, the product of the vales in the sensor model probability
-                                    array. Then the belife is calculated by multiplying the product of the sensor model values by 
+                                    to calculate the prior belief, sensor model, the product of the vales in the sensor model probability
+                                    array. Then the belief is calculated by multiplying the product of the sensor model values by 
                                     the prior belief. Then this is normalized.
                                 </p>
                                 <img src="assets\img\lab10\code_update_step.png" alt="update step code" width = 600/>
@@ -1253,7 +1254,9 @@
                                 <img src="assets\img\lab10\bayes_filter_algorithm.png" alt="bayes" width = 500/>
                                 <p>
                                     I ran the Bayes filter. The green line represents the ground truth, the red line is odometry, and the blue line is 
-                                    the Bayes filter values. It doesn't seem to have done too bad.
+                                    the Bayes filter values. The Bayes filter values seem to follow the ground truth pretty closely. It's not exactly
+                                    the same but the general shape is similar and there is not much error. The odometry model on the otherhand is very far off 
+                                    from both the ground truth and odometry model.
                                 </p>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/yWiScYM8nXY" title="Bayes Filter" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p>
@@ -1267,7 +1270,7 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Resources</h3>
                             <p>
-                                I looked at Anya's code and website as reference for this lab.
+                                I looked at Anya's code and website from last year as reference for this lab.
                             </p>
                         </div>
                     </div>
