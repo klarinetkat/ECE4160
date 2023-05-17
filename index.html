@@ -1120,29 +1120,102 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Objective</h3>
                             <p>
-                                purpose
+                                The purpose of lab 9 is to map out the set-up in the lab room using
+                                distance sensors collected from the ToF sensors and angle measurements from the gyroscope.
+                                There are five points throughout the map (-3, -2), (0, 0), (0, 3), (5, -3), and (5, 3) for us 
+                                to place our robot and collect the measurements. We can chose from one of three options for how we want 
+                                to obtain these measurements which could be either open loop control, PID controol on orientation, 
+                                or PID control on angular speed. I decided to use the third option of PID control on angular speed.
+                                After collecting all of our data, we use transformation matricies to combine and plot all the points on 
+                                the same graph. And then drawing the map using straight line segments.
                             </p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Prelab</h3>
-                            <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Prelab</h4>
-                                <p>
-                                    prelab things
-                                </p>
-                            </div>
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
+                                <h4 class="mb-0">Angular Speed Control</h4>
                                 <p>
-                                    task 1
+                                    When using angular speed control, the lab instructions recommend it is based on
+                                    an angular speed of a maximum of 25 degrees per second to allow for about 14 sensor readings spaced out at approximately
+                                    1s. I ended up basing my PID control on about 20 degrees per second. This gave me somewhere between
+                                    150 to 158 sensor readings. The PID control is based on the PID function I made for Lab 6 and was adjusted
+                                    to work for raw data from the gyroscope.
                                 </p>
+                                <img src="assets\img\lab9\code_arduino_pid_imu.png" alt="code pid imu" width = 300/>
+                                <p>
+                                    At first I wanted to use both ToF sensors to collect data but my sensor on the side of the robot was not working properly.
+                                    Therefore, I only collected data with my front ToF sensor. I calculated the degree measurements by using a 
+                                    low pass filter on the angular velocity (degrees/s) from the gyroscope and then multiplying it by the time difference.
+                                    I stored the time, angle (degrees), distance (mm), angular velocity (deg/s) and motor input into arrays that I could send over
+                                    to my python script. In addition, to make sure the robot car stopped turning after spinning 360 degrees I checked if the yaw value that 
+                                    was being read from the gyroscope was greater than 360.
+                                </p>
+                                <img src="assets\img\lab9\code_lab9_arduino.png" alt="code lab 9" width = 300/>
+                                <p>
+                                    This is a video of the robot in action at the point (-5, 3). As you can see the spin is not very smooth which is due to me not 
+                                    adjusting my Kp and Ki values enough. I settled with Kp = 0.35 and Ki = 0.6. On the bright side the robot was able to stay somewhat
+                                    centered while spinning. In the future, I would want to improve and perfect the spin. (when looking at the data measurements you can 
+                                    see how the abrupt movements may have affected the readings)
+                                </p>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/QGivl3b90Kg" title="Angular Speed Control" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Reading out Distances</h4>
+                                <p>
+                                    I placed the robot at all 5 points on the in-room map and plotted the distance and angle readings.
+                                    One thing I did not notice at first was how the polar plot takes in the angle as radians but after this 
+                                    quick fix I was able to see if the plots matched what I saw in real life. In addition, I started the robot 
+                                    with the ToF sensor facing the right side of the room since that is where 0 degrees faces and I didn't have to
+                                    rotate my data when later on merging the plots.
+                                </p>
+                                <p>
+                                    (-3, -2)
+                                </p>
+                                <img src="assets\img\lab9\n3n2_linear.png" alt="(-3, -2) linear" width = 400/>
+                                <img src="assets\img\lab9\n3n2_polar.png" alt="(-3, -2) polar" width = 400/>
+                                <p>
+                                    (0, 0)
+                                </p>
+                                <img src="assets\img\lab9\00_linear.png" alt="(0, 0) linear" width = 400/>
+                                <img src="assets\img\lab9\00_polar.png" alt="(0, 0) polar" width = 400/>
+                                <p>
+                                    (0, 3)
+                                </p>
+                                <img src="assets\img\lab9\03_linear.png" alt="(0, 3) linear" width = 400/>
+                                <img src="assets\img\lab9\03_polar.png" alt="(0, 3) polar" width = 400/>
+                                <p>
+                                    (5, -3)
+                                </p>
+                                <img src="assets\img\lab9\5n3_linear.png" alt="(5, -3) linear" width = 400/>
+                                <img src="assets\img\lab9\5n3_polar.png" alt="(5, -3) polar" width = 400/>
+                                <p>
+                                    (5, 3)
+                                </p>
+                                <img src="assets\img\lab9\53_linear.png" alt="(5, 3) linear" width = 400/>
+                                <img src="assets\img\lab9\53_polar.png" alt="(5, 3) polar" width = 400/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Merge and Plot Readings + Line Based Map</h4>
+                                <p>
+                                    To merge all the plots into one I ended up following Ryan Chan's transformation matricies code from last year.
+                                    The original plot shows the general layout of the room. There are many points and it it not very smooth which 
+                                    could be due to the turn have a stop/go motion. I would say it's not terrible but definitly has room for improvement.
+                                </p>
+                                <img src="assets\img\lab9\map5pointOriginal.png" alt="orginal 5 point" width = 500/>
+                                <p>
+                                    Afterwards, I filtered out some of the outliers (based on Tiffany Guo) to get a cleaner plot.
+                                </p>
+                                <img src="assets\img\lab9\map5pointCleaner.png" alt="cleaner 5 point" width = 500/>
+                                <p>
+                                    Then, I added the line-based map to the plot
+                                </p>
+                                <img src="assets\img\lab9\map5pointOutline.png" alt="outline 5 point" width = 500/>
+                                <p>
+                                    Here is the python code that was used to create the Merged Plots and Line Based Map:
+                                </p>
+                                <img src="assets\img\lab9\code_5ptplot.png" alt="code 5 point" width = 500/>
                             </div>
                         </div>
                     </div>
@@ -1150,7 +1223,8 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Resources</h3>
                             <p>
-                                Resources
+                                I looked over Anya and Ryan's websites from last year. I also referenced Tiffany's website. As well as received
+                                advice from Zin for how to orient the robot when collecting the data for the plot.
                             </p>
                         </div>
                     </div>
