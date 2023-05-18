@@ -320,7 +320,7 @@
                                 <h4 class="mb-0">Sensor data with chosen method</h4>
                                 <p>
                                     The TOF sensor we are using has two measure modes. The short distance mode is used by default which measures up to 1.3 m. The long 
-                                    distance mode can meausure up to 4 m. For the purpose of this lab, I continued to use the default setting. It might be good to use 
+                                    distance mode can measure up to 4 m. For the purpose of this lab, I continued to use the default setting. It might be good to use 
                                     the long distance mode for the actual robot since it will be moving at a faster speed and needs enough time to react to obstacles 
                                 </p>
                                 <p>
@@ -771,7 +771,7 @@
                                 For the prelab we had to establish a good system for debugging the rest of the lab. I made a copy of my bluetooth code
                                 from the previous labs and cleaned it up to only have a few command for this lab.                                
                                 I planned to use two bluetooth commands to communicate between my laptop and the Artemis. 
-                                One command takes in the sensor meausurements, controls the robot, and stores 
+                                One command takes in the sensor measurements, controls the robot, and stores 
                                 the data in arrays. The other command sends the data that was stored in the arrays over bluetooth to my laptop in python. Since I knew 
                                 I wanted to do position control which only requires me to save data about the time, TOF sensors, and motor speed. On the python side, 
                                 I saved the arrays of data into pickle files so I could access the data to later on make graphs and for lab 7.
@@ -1366,28 +1366,99 @@
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
+                            <h3 class="mb-0">Pre-lab</h3>
+                            <p>
+                                For the pre-lab we had to read through the lectures, grid localization, and other important 
+                                information on the lab 11 instructions page. We also had to set up the base code by 
+                                copying the lab11_sim.ipynb and lab11_real.ipynb files 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
                                 <h4 class="mb-0">Localization in Simulation</h4>
-                                <p></p>
-                                <img src="assets\img\lab11\simulation_pic.png" alt="map" width = 500/>
-                            </div>
-                            <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
                                 <p>
-                                    task 1
+                                    First we tested the localization in the simulation from the notebook
+                                    lab11_sim.ipynb as shown below.
                                 </p>
+                                <img src="assets\img\lab11\simulation_pic.png" alt="sim" width = 500/>
                             </div>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
+                                <h4 class="mb-0">Perform Observation Loop</h4>
                                 <p>
-                                    task 1
+                                    The robot need to output ToF sensor readings taken at 20 degree increments
+                                    starting from the robot's heading. I decided to edit my lab 9 code so instead 
+                                    of collecting data for the full 360 degrees, it only collects it every 20 degrees.
+                                    This is done by keeping track of the current angle and the previous angle (a multiple of 20)
+                                    and checking if 20 degrees has past. I am also only storing the time, distance measurements
+                                    and angle measurements to send over to python.
                                 </p>
+                                <img src="assets\img\lab11\code_lab11_init.png" alt="lab 11 arduino" width = 300/>
+                                <p>
+                                    On the python side, at first I was going to just call the ardiuno commands in the function
+                                    but after some failed localization (I forgot to save screenshots) I decided it would be 
+                                    better to collect the data outside of the perform_observation_loop() function and just pass the function the arrays 
+                                    of the 18 measurements. In the screenshot you can see an example of the data collected
+                                    when the robot ran at (-3, -2).
+                                </p>
+                                <img src="assets\img\lab11\code_lab11_python_func.pngg" alt="lab 11 python function" width = 300/>
+                                <img src="assets\img\lab11\code_lab11_python_com.png" alt="lab 11 python commands" width = 300/>
                             </div>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0">Task 1</h4>
+                                <h4 class="mb-0">Collecting data</h4>
                                 <p>
-                                    task 1
+                                    I collected data at each of the 4 points (-3, -2), (0, 3), (5, -3) and (5.3). I did two trials
+                                    for most of the points and compared the polar plots to where the simulator thought the robot was.
+                                </p>
+                                <p>
+                                    (-3, -2) Trial 1: Facing 270 degrees
+                                </p>
+                                <img src="assets\img\lab11\n3n2_trial1_polar.png" alt="(-3, -2) 270 polar" width = 500/>
+                                <img src="assets\img\lab11\n3n2_trial1_sim_270orient.png" alt="(-3, -2) 270 sim" width = 500/>
+                                <img src="assets\img\lab11\n3n2_trial1_printSt_270orient.png" alt="(-3, -2) 270 print" width = 500/>
+                                <p>
+                                    (-3, -2) Trial 2: Facing 0 degrees
+                                </p>
+                                <img src="assets\img\lab11\n3n2_trial2_polar_0orient.png" alt="(-3, -2) 0 polar" width = 500/>
+                                <img src="assets\img\lab11\n3n2_trial2_sim_0orient.png" alt="(-3, -2) 0 sim" width = 500/>
+                                <img src="assets\img\lab11\n3n2_trial2_printSt_0orient.png" alt="(-3, -2) 0 print" width = 500/>
+                                <p>
+                                    (5, -3) Trial 1: Facing 0 degrees
+                                </p>
+                                <img src="assets\img\lab11\5n3_trial1_polar.png" alt="(5, -3) 0 polar" width = 500/>
+                                <img src="assets\img\lab11\5n3_trial1_printSt_0orient.png" alt="(5, -3) 0 sim" width = 500/>
+                                <img src="assets\img\lab11\5n3_trial1_printSt_0orient.png" alt="(5, -3) 0 print" width = 500/>
+                                <p>
+                                    (5, -3) Trial 2: Facing 180 degrees
+                                </p>
+                                <img src="assets\img\lab11\5n3_trial2_polar_180orient.png" alt="(5, -3) 180 polar" width = 500/>
+                                <img src="assets\img\lab11\5n3_trial2_sim_180orient.png" alt="(5, -3) 180 sim" width = 500/>
+                                <img src="assets\img\lab11\5n3_trial2_printSt_180orient.png" alt="(5, -3) 180 print" width = 500/>
+                                <p>
+                                    (5, 3) Trial 1: Facing 180 degrees
+                                </p>
+                                <img src="assets\img\lab11\53_trial1_polar_180orient.png" alt="(5, 3) 180 polar" width = 500/>
+                                <img src="assets\img\lab11\53_trial1_polar_180orient.png" alt="(5, 3) 180 sim" width = 500/>
+                                <img src="assets\img\lab11\53_trial1_printSt_180orient.png" alt="(5, 3) 180 print" width = 500/>
+                                <p>
+                                    (5, 3) Trial 2: Facing 0 degrees
+                                </p>
+                                <img src="assets\img\lab11\53_trial2_polar_0orient.png" alt="(5, 3) 180 polar" width = 500/>
+                                <img src="assets\img\lab11\53_trial2_sim.png" alt="(5, 3) 180 sim" width = 500/>
+                                <img src="assets\img\lab11\53_trial2_printSt_0orient.png" alt="(5, 3) 180 print" width = 500/>
+                                <p>
+                                    (0, 3) Trial 1: Facing 90 degrees
+                                </p>
+                                <img src="assets\img\lab11\03_trial1_polar_90orient.png" alt="(0, 3) 90 polar" width = 500/>
+                                <img src="assets\img\lab11\03_trial1_sim_90orient.png" alt="(0, 3) 90 sim" width = 500/>
+                                <img src="assets\img\lab11\03_trial1_printSt_90orient.png" alt="(0, 3) 90 print" width = 500/>
+                            </div>
+                            <div class="flex-grow-1 mb-5">
+                                <h4 class="mb-0">Task </h4>
+                                <p>
+                                    task stuff
                                 </p>
                             </div>
                         </div>
