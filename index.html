@@ -1512,7 +1512,16 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Lab Tasks</h3>
                             <div class="flex-grow-1 mb-5">
-                                <h4 class="mb-0"></h4>
+                                <h4 class="mb-0">Arduino Code</h4>
+                                <p>
+                                    I made two new case statments one for the spin and one for the distance movement. For the spin, I used similar code to what I had in 
+                                    labs 9 and 11 expect I added another input parameter for how much the robot should spin at once. In addition, in order to make my spin more accurate
+                                    I also added a parameter for the angluar velocity that the PID was based on. I ended up having the PID be based on a 10 degrees/second angular velocity 
+                                    so I could input smaller angle measuremnts for the robot to turn to. For the distance movement, I reused my code from lab 6 with certain kp=0.015, ki=0.004, kd=0.04 values
+                                    and when it reached a specified distance the robot will stop. I also added another parameter (1 to go forward and 0 to go backwards). I first tested all of these commands to 
+                                    make sure the results where replicable. 
+                                </p>
+                                <h4 class="mb-0">Arduino Code</h4>
                                 <p>
                                     Made new functions.
                                 </p>
