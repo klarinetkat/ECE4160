@@ -1519,20 +1519,25 @@
                                     I also added a parameter for the angluar velocity that the PID was based on. I ended up having the PID be based on a 10 degrees/second angular velocity 
                                     so I could input smaller angle measuremnts for the robot to turn to. For the distance movement, I reused my code from lab 6 with certain kp=0.015, ki=0.004, kd=0.04 values
                                     and when it reached a specified distance the robot will stop. I also added another parameter (1 to go forward and 0 to go backwards). I first tested all of these commands to 
-                                    make sure the results where replicable. 
+                                    make sure the results were replicable. 
                                 </p>
-                                <h4 class="mb-0">Arduino Code</h4>
+                                <img src="assets\img\lab12\arduino_spin.png" alt="spin" width = 300/>
+                                <img src="assets\img\lab12\arduino_line.png" alt="line" width = 300/>
+
+                                <h4 class="mb-0">Python Code</h4>
                                 <p>
-                                    Made new functions.
+                                    I ended up just hardcoding all of the movements with my PID commands. The main thing I had to consider what what direction I wanted my TOF sensor on the front to face.
+                                    I decided to sometimes have the robot movebackwards with the TOF sensor facing the wall it was closer to so it could accurately read the wall measurements.
+                                    This also meant I had to spin the robot multiple times when it was near the wall. Something I would improve is having the ability to have the robot spin both counter-clockwise
+                                    and clockwise since it was annoying to have the robot spin over 200 degrees. Also, my spin was very slow (360 degrees took about 30 seconds)
                                 </p>
+                                <img src="assets\img\lab12\python_path.png" alt="path" width = 300/>
+                                
                                 <h4 class="mb-0">Video of Succesful Run</h4>
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/6Mj25lhcptA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p>
-                                    It was able to navigate properly through most of the waypoints except for the last one.
-                                </p>
-                                <h4 class="mb-0">Task 1</h4>
-                                <p>
-                                    task 1
+                                    It was able to navigate properly through most of the waypoints except for the last one. It honestly went better than I expected. I think 
+                                    the most important part was just having good PID control of the robot that allowed for accurate and consistant angles and distance stops.
                                 </p>
                             </div>
                         </div>
@@ -1541,7 +1546,8 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Resources</h3>
                             <p>
-                                Resources
+                                I spoke to a couple of students about what their plan was for lab 12 and in the end I decided to go with PID control 
+                                to save some time.
                             </p>
                         </div>
                     </div>
